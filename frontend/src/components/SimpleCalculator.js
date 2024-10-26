@@ -35,7 +35,7 @@ function Calculator({ display, handleKeyPress }) {
             </button>
           ))}
         </div>
-        <div className="row" style={{height: '60px'}}>
+        <div className="row" style={{ height: '60px' }}>
           {calculatorButtons.slice(4, 7).map(button => (
             <button key={button.value} className={button.className} onClick={() => handleKeyPress(button.value)}>
               {button.value}

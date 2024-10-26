@@ -58,9 +58,9 @@ function AlgebraicCalculator({ display, handleKeyPress }) {
         {calculatorButtons.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
             {row.map(button => (
-              <button 
-                key={button.value} 
-                className={button.className} 
+              <button
+                key={button.value}
+                className={button.className}
                 onClick={() => onButtonClick(button.value)}
               >
                 {button.value}

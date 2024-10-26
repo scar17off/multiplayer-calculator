@@ -8,3 +8,4 @@ replit.nix
 .env
 .vscode/
 .vs/
+package-lock.json
