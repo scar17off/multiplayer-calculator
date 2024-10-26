@@ -1,0 +1,167 @@
+body, html {
+	background-color: rgb(43, 43, 43);
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	color: white;
+	font-family: Arial, sans-serif;
+}
+
+.App {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+.game-canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	pointer-events: none;
+}
+
+.topbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+}
+
+.player-tag {
+	width: 160px;
+	height: 30px;
+	border-radius: 6px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	margin: 5px;
+}
+
+.player-tag.owner {
+	outline: 3px solid yellow;
+}
+
+.chat-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 25%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+}
+
+.chat-messages {
+	flex-grow: 1;
+	overflow-y: auto;
+	background-color: rgba(59, 59, 59, 0.8);
+	padding: 10px;
+}
+
+.chat-message {
+	margin-bottom: 5px;
+}
+
+.chat-message.server { color: #0fdbd1; }
+.chat-message[data-player="0"] { color: #ffffff; }
+.chat-message[data-player="1"] { color: #ffffff; }
+.chat-message[data-player="2"] { color: #15cae6; }
+.chat-message[data-player="3"] { color: #e6157d; }
+.chat-message[data-player="4"] { color: #e61515; }
+
+.chat-container form {
+	display: flex;
+}
+
+.chat-container input {
+	flex-grow: 1;
+	background-color: rgba(66, 66, 66, 0.8);
+	color: white;
+	border: none;
+	padding: 10px;
+}
+
+.calculator {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(76, 76, 76, 0.8);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	width: min-content;
+}
+
+.display {
+	width: 100%;
+	height: 60px;
+	padding: 40px 0;
+}
+
+#displayResult {
+	width: 88%;
+	height: 60px;
+	float: left;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+	background-color: #2a2a2a94;
+	color: rgb(230, 230, 230);
+	text-align: right;
+	font-weight: 700;
+	font-size: 60px;
+	line-height: 60px;
+	margin: 0 25px;
+}
+
+.buttons {
+	padding: 20px 20px 0 20px;
+}
+
+.row {
+	height: 62px;
+	width: max-content;
+	float: left;
+}
+
+.buttons button {
+	width: 60px;
+	height: 50px;
+	float: left;
+	padding: 0;
+	margin: 5px;
+	box-sizing: border-box;
+	background-color: rgb(90, 90, 90);
+	border: none;
+	font-size: 30px;
+	line-height: 30px;
+	font-weight: 700;
+	cursor: pointer;
+	color: rgb(230, 230, 230);
+}
+
+.buttons button.operator {
+	background-color: rgb(70, 70, 70);
+}
+
+.buttons button.equals {
+	background-color: rgb(205, 135, 49);
+	height: 170px;
+}
+
+.buttons button.clear,
+.buttons button.all-clear {
+	background-color: rgb(209, 49, 49);
+}
+
+.player-count {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}

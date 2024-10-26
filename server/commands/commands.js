@@ -17,8 +17,9 @@ function findPlayer(credentials) {
 };
 
 class Command {
-	constructor(client, message) {
-		this.socket = server.sockets.filter(socket => socket.id == client.sid)[0];
+	constructor(client, message, socket, io) {
+		this.socket = socket;
+		this.io = io;
 		this.author = client;
 		this.message = message
 		this.args = message.split(' ');
@@ -30,7 +31,7 @@ class Command {
 		if(typeof this[this.cmd] == 'function') this[this.cmd](...this.args);
 	};
 	nick(nickname) {
-		if(nickname.length > config.maxNicknameLength) return;
+		if(nickname && nickname.length > config.maxNicknameLength) return;
 		this.author.nick = nickname || '';
 		this.socket.emit('server', 'Your new nickname: ' + nickname);
 	};
@@ -93,6 +94,31 @@ class Command {
 	cmdlist() {
 		let cmds = this.filter(cmd => typeof cmd == 'function');
 		this.socket.emit('server', cmds.join(', '));
+	};
+	calc(type) {
+		console.log(`Calc command received with type: ${type}`);
+		console.log(`Author isOwner: ${this.author.isOwner}, Valid type: ${['simple', 'algebraic'].includes(type)}`);
+		if (this.author.isOwner && ['simple', 'algebraic'].includes(type)) {
+			let room = getRoomByName(this.author.room);
+			console.log(`Current room calctype: ${room.calctype}`);
+			room.setCalcType(type);
+			console.log(`Room calctype after update: ${room.calctype}`);
+			console.log(`Emitting calculatorType event with type: ${type}`);
+			
+			// Emit to the client who initiated the command
+			this.socket.emit('calculatorType', type);
+			
+			// Emit to all clients in the room (including the initiator)
+			this.io.to(this.author.room).emit('calculatorType', type);
+			
+			// Send server message to all clients in the room
+			this.io.to(this.author.room).emit('server', `Calculator type changed to ${type}`);
+			
+			console.log(`Calculator type changed to ${type} for room ${this.author.room}`);
+		} else {
+			console.log('Player is not owner or invalid calculator type');
+			this.socket.emit('server', 'You must be the room owner to change the calculator type.');
+		}
 	};
 };
 

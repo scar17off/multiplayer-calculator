@@ -11,5 +11,6 @@
 	"rooms": 1,
 	"mute": 3,
 	"display": 4,
-	"cmdlist": 1
+	"cmdlist": 1,
+	"calc": 1
 }

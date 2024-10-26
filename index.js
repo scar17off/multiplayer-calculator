@@ -1,12 +1,24 @@
-process.on('uncaughtException', (ex) => {});
-
 const express = require('express');
 const app = express();
 const http = require('http');
-const server = http.createServer(app);
+const httpServer = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
-const { Room, getRoomByName } = require('./server/room.js');
+const cors = require('cors');
+
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST'],
+  credentials: true,
+}));
+
+const io = new Server(httpServer, {
+	cors: {
+		origin: "*",
+		methods: ["GET", "POST"]
+	}
+});
+
+const { Room } = require('./server/room.js');
 
 global.server = {
 	express: app,
@@ -18,7 +30,9 @@ global.server = {
 	config: require('./config.json')
 };
 
-require('./server/listening/express.js');
-require('./server/listening/io.js');
+require('./server/io.js')(io);
 
-server.listen(8080);
+const port = process.env.PORT || 443;
+httpServer.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
