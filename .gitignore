@@ -1,0 +1,10 @@
+.replit_zip_error_log.txt
+node_modules/
+.cache
+.config
+.upm
+.replit
+replit.nix
+.env
+.vscode/
+.vs/
