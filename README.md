@@ -10,28 +10,13 @@ A real-time multiplayer calculator application built with Node.js, Express, Sock
 - Multiple rooms
 - User authentication and roles (admin, moderator, user)
 
-## Technologies Used
-
-- Backend:
-  - Node.js
-  - Express
-  - Socket.IO
-- Frontend:
-  - React
-  - Socket.IO Client
-
 ## Getting Started
-
-### Prerequisites
-
-- Node.js (v12 or higher)
-- npm (v6 or higher)
 
 ### Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/scar17off/multiplayer-calculator.git
+   git clone https://github.com/scar17off/multiplayer-calculator
    cd multiplayer-calculator
    ```
 
@@ -63,18 +48,7 @@ A real-time multiplayer calculator application built with Node.js, Express, Sock
    npm start
    ```
 
-3. Open your browser and navigate to `http://localhost:3000`
-
-## Usage
-
-- Join a room or create a new one by appending `?room=roomname` to the URL
-- Use the calculator by clicking on the buttons or typing on your keyboard
-- Chat with other users in the same room
-- Admins and moderators can use special commands (type `/help` in the chat for a list of commands)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+3. Open your browser and navigate to `http://localhost:3000/`
 
 ## License
 
